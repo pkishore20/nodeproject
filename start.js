@@ -9,7 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 const Route = require('./Routes/app');
 
 app.use('/',Route);
-
 connectDB();
 
 const PORT = process.env.PORT || 4000;
