@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'],
   },
   password: {
     type: String,
@@ -34,10 +35,7 @@ userSchema.pre("save", async function (next) {
       this.password = await bcrypt.hash(this.password, salt);
       next();
     } catch (error) {
-      next(error);
     }
-  } else {
-    next();
   }
 });
 
