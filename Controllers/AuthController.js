@@ -4,12 +4,11 @@ const bcrypt = require('bcrypt');
 exports.register = async (req, res) => {
 
   try {
-    const {email, password , role } = req.body;
+    const {email, password  } = req.body;
 
-    const createdUser = await user.create({ email, password , role});
+    const createdUser = await user.create({ email, password });
 
     res.send({
-      status: true,
       statuscode: 200,
       response: "Created successfully",
       data: createdUser,
@@ -38,7 +37,7 @@ exports.login = async (req, res) => {
       }
   
       res.json({
-        status: true,
+        statuscode: 200,
         response: "Login successful",
         data: {
           user: user_data,

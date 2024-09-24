@@ -1,12 +1,9 @@
-const student = require('../Models/Student');
+const user = require('../Models/User');
 
-module.exports = {
-  getAllStudent: async (req, res) => {
+exports. getAllUser= async (req, res) => {
     try {
-      const results = await student.find();
-
+      const results = await user.find();
       res.send({
-        status: true,
         status_code: 200,
         message: "Students Reterived successfully",
         data: results,
@@ -14,19 +11,18 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
+  };
 
-  createNewStudent: async (req, res, ) => {
+exports.createNewUser= async (req, res, ) => {
     try {
-      const { name, phno, department } = req.body;
+      const { name, email ,mobile_no} = req.body;
       const newData = {
         name,
-        department,
-        phno,
+        email,
+        mobile_no
       };
-      const createdData = await student.create(newData);  
+      const createdData = await user.create(newData);  
       res.send({
-        status: true,
         status_code: 200,
         message: "Student Created successfully",
         data: createdData,
@@ -36,18 +32,17 @@ module.exports = {
       res.status(500).json({ error: error.message });
     }
 
-  },
+  };
 
-  findStudentById: async (req, res) => {
+  exports.findUserById= async (req, res) => {
     try {
       const id = req.params.id;    
-      const student_data = await student.findById(id);
+      const student_data = await user.findById(id);
 
       if (!student_data) {
         throw createError(404, 'Student does not exist.');
       }
       res.send({
-        status: true,
         status_code: 200,
         message: "Students Reterived successfully",
         data: student_data,
@@ -55,41 +50,40 @@ module.exports = {
      } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
+  };
 
-  updateAStudent: async (req, res,) => {
+  exports.updateAUser= async (req, res,) => {
     try {
   
        const _id =req.params.id;
-       const { name, phno, department } = req.body;
+       const { name, email ,mobile_no} = req.body;
        const newData = {
          name,
-         department,
-         phno,
+         email,
+         mobile_no
        };
   
-      const updatedData  = await student.findByIdAndUpdate(_id, newData);
-      const data = await student.findById(_id);
+       const updatedData  = await user.findByIdAndUpdate(_id, newData);
+       const data = await user.findById(_id);
   
       res.send({
-        status: true,
+        status: 200,
         response: "Student update successfully",
         data: data,
       });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  },
+  };
 
-  deleteAStudent: async (req, res,) => {
+  exports.deleteAUser= async (req, res,) => {
     const id = req.params.id;
     try {
-      const result = await student.findByIdAndDelete(id);
+      const result = await user.findByIdAndDelete(id);
       if (!result) {
         throw createError(404, 'Student does not exist.');
       }
       res.send({
-          status: true,
           status_code: 200,
           message: "Student deleted successfully",
         });
@@ -97,5 +91,4 @@ module.exports = {
       res.status(500).json({ error: error.message });
 
     }
-  }
-};
+  };

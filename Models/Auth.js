@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const ROLE = {
-  superadmin: "superadmin",
-  admin: "admin",
-  user: "user",
-};
-
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -17,14 +11,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  role: {
-    type: String,
-    default: ROLE.user,
-    enum: [
-      ROLE.user,
-      ROLE.admin,
-      ROLE.superadmin],
   },
 });
 
