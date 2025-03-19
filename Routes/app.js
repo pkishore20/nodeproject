@@ -6,6 +6,7 @@ const DepartmentController = require('../Controllers/DepartmentController.js');
 const RoleController = require('../Controllers/RoleController.js');
 const AttendanceController = require('../Controllers/AttendanceController.js');
 const AuthController = require('../Controllers/AuthController.js');
+const UserInfoController = require('../Controllers/UserInfoController.js');
 
 router.route('/user/create').post(UserController.createNewUser);
 router.route('/user/list').get(UserController.getAllUser);
@@ -31,6 +32,8 @@ router.route('/attendance/show/:id').get(AttendanceController.findAttendanceById
 router.route('/attendance/update/:id').patch(AttendanceController.updateAAttendance);
 router.route('/attendance/delete/:id').delete(AttendanceController.deleteAAttendance);
 
+router.route('/storeUserInfo').post(UserInfoController.storeUserInfo);
+router.route('/userInfo/delete/:id').delete(UserInfoController.deleteUserInfo);
 
 router.route('/register').post(AuthController.register);
 router.route('/login').get(AuthController.login);

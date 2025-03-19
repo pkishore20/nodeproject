@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = require('../Models/User');
 
 const AttendanceSchema = new Schema({
-    users_info_id: {
-      type: String,
-      required: true,
+    users_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User', 
+      required: true
     },
     date: {
       type: Date,

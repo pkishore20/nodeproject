@@ -1,4 +1,5 @@
 const attendance = require('../Models/Attendance');
+const User = require('../Models/User');
 
 exports.getAllAttendance= async (req, res) => {
     try {
@@ -16,7 +17,7 @@ exports.getAllAttendance= async (req, res) => {
 
   exports.createNewAttendance = async (req, res) => {
       try {
-          const {users_info_id, date, in_time, out_time} = req.body;
+          const {users_id, date, in_time, out_time} = req.body;
   
           const inTimeParts = in_time.split(':');
           const outTimeParts = out_time.split(':');
@@ -37,7 +38,7 @@ exports.getAllAttendance= async (req, res) => {
           const total_hours = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   
           const newData = {
-            users_info_id,
+            users_id,
             date,
             in_time,
             out_time,
@@ -81,7 +82,7 @@ exports.getAllAttendance= async (req, res) => {
   
        
         const _id =req.params.id;
-        const {users_info_id, date, in_time, out_time} = req.body;
+        const {users_id, date, in_time, out_time} = req.body;
 
         const inTimeParts = in_time.split(':');
           const outTimeParts = out_time.split(':');
@@ -103,7 +104,7 @@ exports.getAllAttendance= async (req, res) => {
 
 
         const newData = {
-            users_info_id,
+            users_id,
             date,
             in_time,
             out_time,
